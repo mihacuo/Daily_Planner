@@ -57,26 +57,34 @@ function renewData() {
     element["classAssign"] = requiredClass;
     //not sure what for, but will add id's in case
     element["id"] = "textarea-" + id;
-    id++;
+
 
     //let's generate html of the time blocks.
+    //whole row
     var wholeRow = $('<div>');
     wholeRow.addClass("whole-row")
-    var timeBlock = $('<div>');
-    timeBlock.addClass("row");
-    var hrSection= $("<span>");
+
+    //hour section
+    var hrSection= $("<div>");
     hrSection.addClass("hour")
     hrSection.text(element["hr"]);
-    var btn = $("<button>");
-    btn.addClass("saveBtn");
-    var saveBTN = $("<button>");
-    saveBTN.addClass("SaveBtn");
-    var img = $("<img id='save' height='35px' width='35px' src='./assets/img/floppy.jpg'/>")
-    saveBTN.append(img);
-    timeBlock.append(hrSection);
+
+    //colourful section for user input
+    var timeBlock = $('<textarea>');
+    timeBlock.attr("name", element.id);
+    timeBlock.addClass("row");
     timeBlock.addClass(element["classAssign"])
+
+    //save button
+    var saveBTN = $("<button>");
+    saveBTN.addClass("saveBtn");
+    saveBTN.attr("id", "button=" + id);
+    var img = $("<img id='save' height='25px' src='./assets/img/floppy.jpg'/>")
+    saveBTN.append(img);
+   
     wholeRow.append(hrSection, timeBlock, saveBTN)
     $(".container").append(wholeRow);
+    id++;
   });
 }
 

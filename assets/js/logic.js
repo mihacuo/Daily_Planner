@@ -10,11 +10,11 @@ var currentHR = moment().format("ha");
 
 //working hours 9am-5pm
 //let's generate an array of the hourly slots below
-data = JSON.parse(localStorage.getItem("notesData"))
+data = JSON.parse(localStorage.getItem("notesData"));
 if (data) {
   console.log("loaded from local storage");
 } else {
-  console.log('no data in local storage');
+  console.log("no data in local storage");
   var data = [
     { hr: "9am" },
     { hr: "10am" },
@@ -29,16 +29,16 @@ if (data) {
 
   // remove before deployment, needs to test
   // current time instead of morning
-  // temporary variable
-  var data = [
-    { hr: "5pm" },
-    { hr: "6pm" },
-    { hr: "7pm" },
-    { hr: "8pm", note: "dsdsds" },
-    { hr: "9pm" },
-    { hr: "10pm" },
-    { hr: "11pm" },
-  ];
+  // // temporary variable
+  // var data = [
+  //   { hr: "5pm" },
+  //   { hr: "6pm" },
+  //   { hr: "7pm" },
+  //   { hr: "8pm", note: "dsdsds" },
+  //   { hr: "9pm" },
+  //   { hr: "10pm" },
+  //   { hr: "11pm" },
+  // ];
 }
 
 function renewData() {
@@ -97,17 +97,12 @@ function renewData() {
       btnClickedName = btnClicked.attr("name");
       var btnNo = btnClickedName.split("=")[1];
       //console.log(btnNo);
+      // get note text
       var textAreaNo = "textarea-" + btnNo;
       var textAreaText = $("#" + textAreaNo).val();
-      if (textAreaText !== "") {
-        console.log(textAreaText);
-        data[btnNo]["note"] = textAreaText;
-        // save to local storage
-        localStorage.setItem("notesData", JSON.stringify(data));
-      } else {
-        console.log("no text entered");
-      }
-
+      data[btnNo]["note"] = textAreaText;
+      // save to local storage
+      localStorage.setItem("notesData", JSON.stringify(data));
       // console.log(textAreaText.length);
     });
 

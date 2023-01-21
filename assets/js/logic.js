@@ -1,4 +1,4 @@
-console.log("test");
+// console.log("test");
 
 // display current date & time
 var timeStamp = moment().format("dddd, MMMM Do YYYY, h:mm a")
@@ -6,7 +6,7 @@ $("#currentDay").text(timeStamp);
 
 //gets current hour
 var currentHR = moment().format("ha");
-console.log(currentHR);
+// console.log(currentHR);
 
 //working hours 9am-5pm
 //let's generate an array of the hourly slots below
@@ -25,13 +25,15 @@ var data = [
 // remove before deployment, needs to test
 // current time instead of morning
 // temporary variable
-// var data = [
-
-//   { hr: "8pm" },
-//   { hr: "9pm" },
-//   { hr: "10pm" },
-//    {hr: "11pm"}
-// ];
+var data = [
+  { hr: "5pm" },
+  { hr: "6pm" },
+  { hr: "7pm" },
+  { hr: "8pm", "note":"dsdsds" },
+  { hr: "9pm" },
+  { hr: "10pm" },
+   {hr: "11pm"}
+];
 
 function renewData() {
   $(".container").children().remove();
@@ -71,9 +73,13 @@ function renewData() {
 
     //colourful section for user input
     var timeBlock = $('<textarea>');
-    timeBlock.attr("name", element.id);
+    timeBlock.attr("id", element.id);
     timeBlock.addClass("row");
     timeBlock.addClass(element["classAssign"])
+    if (data[id]["note"]) {
+      timeBlock.val(data[id]["note"])
+    }
+    
 
     //save button
     var saveBTN = $("<button>");
@@ -88,10 +94,15 @@ function renewData() {
       var btnNo = btnClickedName.split("=")[1];
       //console.log(btnNo);
       var textAreaNo = "textarea-" + btnNo;
-      console.log(textAreaNo);
-      var textAreaText = $("#" + textAreaNo);
-
-      console.log(textAreaText);
+      var textAreaText = $("#" +textAreaNo).val();
+      if (textAreaText !== ""){
+        console.log(textAreaText);
+        data[btnNo]["note"] = textAreaText;
+        // save to local storage
+      } else {
+        console.log('no text entered')
+      }
+      
       // console.log(textAreaText.length);
 
     })

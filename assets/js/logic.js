@@ -1,5 +1,12 @@
 // console.log("test");
 
+$(document).ready(function(){
+
+  $("body").animate({opacity:"100%"},700)
+
+
+})
+
 // display current date & time
 var timeStamp = moment().format("dddd, MMMM Do YYYY, h:mm a");
 $("#currentDay").text(timeStamp);
@@ -93,6 +100,29 @@ function renewData() {
     saveBTN.append(img);
     saveBTN.on("click", function (event) {
       event.preventDefault();
+      var text1 = $("#info").text();
+      $("#info").text("Saved to local storage.");
+
+
+      //add some blicking effect
+      var j = 0;
+      var blink = setInterval(function () {
+        $("#info").addClass("green");
+
+        setTimeout(function () {
+          $("#info").removeClass("green");
+        }, 200);
+        j++;
+        if (j == 4) {
+          clearInterval(blink);
+        }
+      }, 400);
+
+      setTimeout(function () {
+        $("#info").text(text1);
+        $("#info").removeClass("green");
+      }, 2000);
+
       var btnClicked = $(this);
       btnClickedName = btnClicked.attr("name");
       var btnNo = btnClickedName.split("=")[1];

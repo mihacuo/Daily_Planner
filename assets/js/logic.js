@@ -17,12 +17,12 @@ var currentHR = moment().format("ha");
 
 //working hours 9am-5pm
 //let's generate an array of the hourly slots below
-data = JSON.parse(localStorage.getItem("notesData"));
+var data = JSON.parse(localStorage.getItem("notesData"));
 if (data) {
   console.log("loaded from local storage");
 } else {
   console.log("no data in local storage");
-  var data = [
+  data = [
     { hr: "9am" },
     { hr: "10am" },
     { hr: "11am" },
